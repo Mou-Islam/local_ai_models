@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama API Key Manager</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>API keys</h1>
+            <button id="show-create-modal-btn">+ Create new secret key</button>
+        </header>
+
+        <p class="info-text">Manage API keys for your local Ollama models.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>SECRET KEY</th>
+                    <th>CREATED</th>
+                    <th>MODEL ACCESS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="keys-table-body">
+                <!-- Data loaded via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Create Key Modal -->
+    <div id="create-key-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h2>Create new secret key</h2>
+            <form id="create-key-form">
+                <label for="key-name">Name <span class="optional">(Optional)</span></label>
+                <input type="text" id="key-name" placeholder="My Test Key">
+
+                <label for="project-model">Model</label>
+                <select id="project-model" required>
+                    <option value="" disabled selected>Loading models...</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">Create secret key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Show Generated Key Modal -->
+    <div id="show-key-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h2>API Key Created</h2>
+            <p>Please save this secret key. You will not be able to view it again.</p>
+            <div class="key-display-wrapper">
+                <input type="text" id="generated-key-input" readonly>
+                <button id="copy-key-btn">Copy</button>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-primary" id="done-btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
